@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { ref } from '@vue/reactivity';
 import { RegistrationFormValues } from '../interfaces/RegistrationFormValues';
+import { useAuthentication } from '../composables/useAuthentication';
+
+const { singup } = useAuthentication();
 
 const registrationFormValues = ref<RegistrationFormValues>({
   names: '',
@@ -24,7 +27,7 @@ const registrationFormValues = ref<RegistrationFormValues>({
         </div>
       </div>
 
-      <q-form class="q-gutter-xl">
+      <q-form class="q-gutter-xl" v-on:submit="singup(registrationFormValues)">
         <div class="row">
           <q-input
             class="col-12 col-sm-6 q-px-md"
@@ -55,10 +58,17 @@ const registrationFormValues = ref<RegistrationFormValues>({
             v-model="registrationFormValues.confirmEmail"
             label="Confirmar correo eléctronico"
             lazy-rules
-            :rules="[(value) => (value ? true : 'Campo requerido')]"
+            :rules="[
+              (value) => (value ? true : 'Campo requerido'),
+              (value) =>
+                value == registrationFormValues.email
+                  ? true
+                  : 'Los correos eléctronicos no coinciden',
+            ]"
           />
 
           <q-input
+            type="password"
             class="col-12 col-sm-6 q-px-md"
             v-model="registrationFormValues.password"
             label="Contraseña"
@@ -67,6 +77,7 @@ const registrationFormValues = ref<RegistrationFormValues>({
           />
 
           <q-input
+            type="password"
             class="col-12 col-sm-6 q-px-md"
             v-model="registrationFormValues.confirmPassword"
             label="Confirmar contraseña"

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { ref } from '@vue/reactivity';
 import { LoginForm } from 'src/interfaces/LoginForm';
+import { useAuthentication } from '../composables/useAuthentication';
+
+const { login } = useAuthentication();
 
 const loginForm = ref<LoginForm>({
   user: '',
@@ -20,7 +23,10 @@ const loginForm = ref<LoginForm>({
         </div>
       </div>
 
-      <q-form class="q-gutter-md">
+      <q-form
+        class="q-gutter-md"
+        @submit="login(loginForm.user, loginForm.password)"
+      >
         <q-input
           v-model="loginForm.user"
           label="Usuario"
@@ -29,6 +35,7 @@ const loginForm = ref<LoginForm>({
         />
 
         <q-input
+          type="password"
           v-model="loginForm.password"
           label="Contraseña"
           lazy-rules
