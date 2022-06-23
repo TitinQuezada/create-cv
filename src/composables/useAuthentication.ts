@@ -5,38 +5,41 @@ import {
 } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { authenticationService, databaseService } from 'src/boot/firebase';
+import { Collections } from 'src/enums/Collections';
 import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
 import { useRouter } from 'vue-router';
+import { useRepository } from './useRepository';
 
 export const useAuthentication = () => {
+  const userRepository = useRepository(Collections.Users);
   const router = useRouter();
 
   const singup = async (user: RegistrationFormValues) => {
-    const user1 = await createUserWithEmailAndPassword(
+    const userResult = await createUserWithEmailAndPassword(
       authenticationService,
       user.email,
       user.password
     );
 
-    sendEmailVerification(user1.user);
+    await sendEmailVerification(userResult.user);
 
-    await addDoc(collection(databaseService, 'users'), {
+    await userRepository.create({
       names: user.names,
       lastnames: user.lastnames,
       email: user.email,
     });
 
-    router.push('/home');
+    router.push('/');
   };
 
   const login = async (email: string, password: string) => {
-    const user = await signInWithEmailAndPassword(
+    const userResult = await signInWithEmailAndPassword(
       authenticationService,
       email,
       password
     );
 
-    if (user.user.emailVerified) {
+    if (userResult.user.emailVerified) {
       router.push('/home');
     } else {
       alert('correo no verificado');
