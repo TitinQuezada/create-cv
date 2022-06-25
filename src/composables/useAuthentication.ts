@@ -1,17 +1,17 @@
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
-import { authenticationService, databaseService } from 'src/boot/firebase';
+import { authenticationService } from 'src/boot/firebase';
 import { Collections } from 'src/enums/Collections';
 import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
 import { useRouter } from 'vue-router';
+import { User } from '../interfaces/User';
 import { useRepository } from './useRepository';
 
 export const useAuthentication = () => {
-  const userRepository = useRepository(Collections.Users);
+  const userRepository = useRepository<User>(Collections.Users);
   const router = useRouter();
 
   const singup = async (user: RegistrationFormValues) => {
