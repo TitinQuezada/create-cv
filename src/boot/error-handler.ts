@@ -36,6 +36,8 @@ export default boot(({ app }) => {
   app.config.errorHandler = function (err) {
     const firebaseError: FirebaseError = err as FirebaseError;
 
+    console.error(err);
+
     app.config.globalProperties.$q.notify({
       progress: true,
       type: 'negative',

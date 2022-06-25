@@ -2,6 +2,7 @@
 import { ref } from '@vue/reactivity';
 import { LoginForm } from 'src/interfaces/LoginForm';
 import { useAuthentication } from '../composables/useAuthentication';
+import GoogleButton from 'src/shared/components/GoogleButton.vue';
 
 const { login } = useAuthentication();
 
@@ -50,13 +51,7 @@ const loginForm = ref<LoginForm>({
             color="primary"
           />
 
-          <q-btn
-            outline
-            color="primary"
-            icon="ion-logo-google"
-            class="col-12 q-mb-md"
-            label="Sing in with Google"
-          />
+          <google-button extra-class="q-mb-md" />
 
           <div class="col-12 text-center">
             <span>¿No tienes cuenta?</span>

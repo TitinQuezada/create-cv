@@ -1,7 +1,10 @@
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 import { authenticationService } from 'src/boot/firebase';
 import { Collections } from 'src/enums/Collections';
@@ -9,10 +12,12 @@ import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
 import { useRouter } from 'vue-router';
 import { User } from '../interfaces/User';
 import { useRepository } from './useRepository';
+import { useToast } from './useToast';
 
 export const useAuthentication = () => {
   const userRepository = useRepository<User>(Collections.Users);
   const router = useRouter();
+  const toast = useToast();
 
   const singup = async (user: RegistrationFormValues) => {
     const userResult = await createUserWithEmailAndPassword(
@@ -42,9 +47,19 @@ export const useAuthentication = () => {
     if (userResult.user.emailVerified) {
       router.push('/home');
     } else {
-      alert('correo no verificado');
+      toast.danger('correo no verificado');
     }
   };
 
-  return { login, singup };
+  const googleAuthentication = async () => {
+    const provider = new GoogleAuthProvider();
+
+    await signInWithPopup(authenticationService, provider);
+
+    router.push('/home');
+  };
+
+  const singout = async () => await signOut(authenticationService);
+
+  return { login, singup, googleAuthentication, singout };
 };
