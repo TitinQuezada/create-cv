@@ -21,8 +21,10 @@ const routes: RouteRecordRaw[] = [
     meta: { private: true },
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/HomePage.vue') },
-      { path: 'home2', component: () => import('pages/HomePage2.vue') },
+      {
+        path: '',
+        component: () => import('pages/HomePage.vue'),
+      },
     ],
   },
 

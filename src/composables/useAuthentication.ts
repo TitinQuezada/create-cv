@@ -59,7 +59,10 @@ export const useAuthentication = () => {
     router.push('/home');
   };
 
-  const singout = async () => await signOut(authenticationService);
+  const singout = async () => {
+    await signOut(authenticationService);
+    router.push('/');
+  };
 
   return { login, singup, googleAuthentication, singout };
 };
