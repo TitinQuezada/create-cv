@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { authenticationService } from 'src/boot/firebase';
 import { Collections } from 'src/enums/Collections';
@@ -15,7 +16,6 @@ import { useRepository } from './useRepository';
 import { useToast } from './useToast';
 
 export const useAuthentication = () => {
-  const userRepository = useRepository<User>(Collections.Users);
   const router = useRouter();
   const toast = useToast();
 
@@ -26,13 +26,11 @@ export const useAuthentication = () => {
       user.password
     );
 
-    await sendEmailVerification(userResult.user);
-
-    await userRepository.create({
-      names: user.names,
-      lastnames: user.lastnames,
-      email: user.email,
+    await updateProfile(userResult.user, {
+      displayName: `${user.names} ${user.lastnames}`,
     });
+
+    await sendEmailVerification(userResult.user);
 
     router.push('/');
   };

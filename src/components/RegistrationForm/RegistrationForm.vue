@@ -1,18 +1,9 @@
 <script lang="ts" setup>
-import { ref } from '@vue/reactivity';
-import { RegistrationFormValues } from '../interfaces/RegistrationFormValues';
-import { useAuthentication } from '../composables/useAuthentication';
+import { useAuthentication } from '../../composables/useAuthentication';
+import { useRegistrationForm } from './useRegistrationForm';
 
 const { singup } = useAuthentication();
-
-const registrationFormValues = ref<RegistrationFormValues>({
-  names: '',
-  lastnames: '',
-  confirmEmail: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-});
+const { registrationFormValues } = useRegistrationForm();
 </script>
 
 <template>

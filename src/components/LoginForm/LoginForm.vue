@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-import { ref } from '@vue/reactivity';
-import { LoginForm } from 'src/interfaces/LoginForm';
-import { useAuthentication } from '../composables/useAuthentication';
 import GoogleButton from 'src/shared/components/GoogleButton.vue';
+import { useAuthentication } from '../../composables/useAuthentication';
+import { useLoginForm } from './useLoginForm';
 
 const { login } = useAuthentication();
-
-const loginForm = ref<LoginForm>({
-  user: '',
-  password: '',
-});
+const { loginForm } = useLoginForm();
 </script>
 
 <template>

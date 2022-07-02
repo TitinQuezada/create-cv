@@ -1,3 +1,4 @@
+import { onAuthStateChanged } from 'firebase/auth';
 import { route } from 'quasar/wrappers';
 import { authenticationService } from 'src/boot/firebase';
 import {
@@ -36,21 +37,23 @@ export default route(function (/* { store, ssrContext } */) {
   });
 
   Router.beforeEach((to, from, next) => {
-    if (to.matched.some((route) => route.meta.private)) {
-      if (authenticationService.currentUser) {
-        next();
-      } else {
-        next({ path: '/' });
+    onAuthStateChanged(authenticationService, (user) => {
+      if (to.matched.some((route) => route.meta.private)) {
+        if (user && user.emailVerified) {
+          next();
+        } else {
+          next({ path: '/' });
+        }
       }
-    } else if (to.matched.some((route) => route.meta.public)) {
-      if (!authenticationService.currentUser) {
-        next();
-      } else {
-        next({ path: '/home' });
+
+      if (to.matched.some((route) => route.meta.public)) {
+        if (!user || !user.emailVerified) {
+          next();
+        } else {
+          next({ path: '/home' });
+        }
       }
-    } else {
-      next();
-    }
+    });
   });
 
   return Router;

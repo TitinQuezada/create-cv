@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     meta: { private: true },
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/layouts/MainLayout/MainLayout.vue'),
     children: [
       {
         path: '',

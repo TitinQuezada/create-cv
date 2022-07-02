@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey?.toString(),
@@ -23,6 +23,6 @@ export { authenticationService, databaseService };
 
 // "async" is optional;
 // more info on params: https://v2.quasar.dev/quasar-cli/boot-files
-export default boot(async (/* { app, router, ... } */) => {
-  // something to do
+export default boot(async () => {
+  // here code
 });

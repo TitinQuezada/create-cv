@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import RegistrationForm from 'src/components/RegistrationForm.vue';
+import RegistrationForm from 'src/components/RegistrationForm/RegistrationForm.vue';
 </script>
 
 <template>
   <q-page class="row items-center justify-evenly">
-    <RegistrationForm />
+    <registration-form />
   </q-page>
 </template>
