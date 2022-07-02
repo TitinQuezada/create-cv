@@ -1,5 +1,16 @@
 import { RouteRecordRaw } from 'vue-router';
 
+export const routePaths = {
+  publicRoutes: {
+    login: '/',
+    singup: '/singup',
+  },
+  privateRoutes: {
+    home: '/home',
+    personalInformation: '/personal-information',
+  },
+};
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -17,13 +28,17 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/home',
+    path: '/',
     meta: { private: true },
     component: () => import('src/layouts/MainLayout/MainLayout.vue'),
     children: [
       {
-        path: '',
+        path: routePaths.privateRoutes.home,
         component: () => import('pages/HomePage.vue'),
+      },
+      {
+        path: routePaths.privateRoutes.personalInformation,
+        component: () => import('pages/PersonalInformationPage.vue'),
       },
     ],
   },

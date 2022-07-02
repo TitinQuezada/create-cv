@@ -19,9 +19,19 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> Menu </q-item-label>
 
-        <q-item clickable>
+        <q-item :to="routePaths.privateRoutes.home" clickable>
+          <q-item-section avatar>
+            <q-icon name="home" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>Home</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item :to="routePaths.privateRoutes.personalInformation" clickable>
           <q-item-section avatar>
             <q-icon name="person" />
           </q-item-section>
@@ -90,6 +100,7 @@
 </template>
 
 <script lang="ts" setup>
+import { routePaths } from 'src/router/routes';
 import { useAuthentication } from '../../composables/useAuthentication';
 import { useMainLayout } from './useMainLayout';
 

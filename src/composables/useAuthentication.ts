@@ -8,11 +8,8 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { authenticationService } from 'src/boot/firebase';
-import { Collections } from 'src/enums/Collections';
 import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
 import { useRouter } from 'vue-router';
-import { User } from '../interfaces/User';
-import { useRepository } from './useRepository';
 import { useToast } from './useToast';
 
 export const useAuthentication = () => {
