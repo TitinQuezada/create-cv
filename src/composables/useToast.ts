@@ -4,8 +4,12 @@ export const useToast = () => {
   const quasar = useQuasar();
 
   const danger = (message: string) => {
-    quasar.notify({ message, color: 'red' });
+    quasar.notify({ message, type: 'negative', progress: true });
   };
 
-  return { danger };
+  const success = (message: string) => {
+    quasar.notify({ message, type: 'positive', progress: true });
+  };
+
+  return { danger, success };
 };

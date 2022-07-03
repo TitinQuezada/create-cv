@@ -3,7 +3,8 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey?.toString(),
@@ -18,8 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const authenticationService = getAuth(app);
 const databaseService = getFirestore(app);
+const storageService = getStorage(app);
 
-export { authenticationService, databaseService };
+export { authenticationService, databaseService, storageService };
 
 // "async" is optional;
 // more info on params: https://v2.quasar.dev/quasar-cli/boot-files

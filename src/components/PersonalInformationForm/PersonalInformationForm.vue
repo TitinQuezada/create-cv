@@ -6,6 +6,7 @@
       </div>
 
       <q-input
+        maxlength="30"
         clearable
         class="col-12 col-sm-6 q-px-md"
         label="Nombres"
@@ -16,6 +17,7 @@
       />
 
       <q-input
+        maxlength="30"
         clearable
         class="col-12 col-sm-6 q-px-md"
         label="Apellidos"
@@ -24,19 +26,8 @@
         :rules="formValidations.lastnames"
       />
 
-      <q-file
-        class="col-12 col-sm-6 q-px-md q-mt-sm"
-        clearable
-        label="Foto"
-        v-model="formValues.photo"
-        :rules="formValidations.photo"
-      >
-        <template v-slot:prepend>
-          <q-icon name="cloud_upload" />
-        </template>
-      </q-file>
-
       <q-input
+        maxlength="50"
         clearable
         class="col-12 col-sm-6 q-px-md q-mt-sm"
         label="Profesión"
@@ -45,7 +36,33 @@
         :rules="formValidations.profession"
       />
 
+      <div class="row q-px-md q-mt-sm image-container">
+        <div class="col-6 col-sm-6">
+          <q-file
+            clearable
+            label="Foto"
+            v-model="formValues.photo"
+            :rules="formValidations.photo"
+            accept=".jpg, .jpeg, .png"
+            @update:model-value="handleUpload()"
+          >
+            <template v-slot:prepend>
+              <q-icon name="cloud_upload" />
+            </template>
+          </q-file>
+        </div>
+
+        <div class="col-6 text-center">
+          <q-img
+            class="image"
+            :src="photoUrl"
+            style="height: 150px; max-width: 150px; object-fit: cover"
+          ></q-img>
+        </div>
+      </div>
+
       <q-input
+        maxlength="30"
         clearable
         class="col-12 col-sm-6 q-px-md q-mt-sm"
         label="Nacionalidad"
@@ -82,6 +99,7 @@
       </div>
 
       <q-input
+        maxlength="100"
         clearable
         class="col-12 q-px-md"
         label="Dirección"
@@ -91,6 +109,7 @@
       />
 
       <q-input
+        maxlength="10"
         @keypress="onlyNumbers"
         clearable
         class="col-12 col-sm-6 q-px-md"
@@ -101,6 +120,7 @@
       />
 
       <q-input
+        maxlength="50"
         clearable
         class="col-12 col-sm-6 q-px-md"
         label="Correo eléctronico"
@@ -110,6 +130,7 @@
       />
 
       <q-input
+        maxlength="60"
         clearable
         class="col-12 col-sm-6 q-px-md"
         label="Pagina Web"
@@ -138,8 +159,14 @@
 <script lang="ts" setup>
 import { usePersonalInformationForm } from './usePersonalInformationForm';
 
-const { submit, formValues, onlyNumbers, formValidations } =
-  usePersonalInformationForm();
+const {
+  submit,
+  formValues,
+  onlyNumbers,
+  formValidations,
+  photoUrl,
+  handleUpload,
+} = usePersonalInformationForm();
 </script>
 
 <style lang="scss" scoped>
@@ -153,6 +180,18 @@ const { submit, formValues, onlyNumbers, formValidations } =
 
   @media screen and (max-width: 599px) {
     text-align: center;
+  }
+}
+
+.image-container {
+  width: 50%;
+
+  @media screen and (max-width: 599px) {
+    width: 100%;
+  }
+
+  .image {
+    border: 1px solid $border;
   }
 }
 </style>
