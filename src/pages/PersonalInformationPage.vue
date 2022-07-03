@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import PersonalInformationForm from 'src/components/PersonalInformationForm/PersonalInformationForm.vue';
+</script>
 
 <template>
-  <h1>Information page</h1>
+  <q-page class="row items-center justify-evenly">
+    <personal-information-form />
+  </q-page>
 </template>
 
 <style lang="scss" scoped></style>
