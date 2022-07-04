@@ -38,6 +38,8 @@ export default boot(({ app }) => {
 
     console.error(err);
 
+    app.config.globalProperties.$q.loading.hide();
+
     app.config.globalProperties.$q.notify({
       progress: true,
       type: 'negative',
