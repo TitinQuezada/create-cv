@@ -106,7 +106,7 @@
       :rules="formValidations.description"
     />
 
-    <div class="row justify-end q-mx-md">
+    <div class="row justify-end q-mx-sm-md">
       <q-btn
         class="col-12 col-sm-2 q-mr-sm-md q-mb-sm q-mb-sm-none"
         label="Ver CV"
