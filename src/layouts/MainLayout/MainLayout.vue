@@ -41,7 +41,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable>
+        <q-item :to="routePaths.privateRoutes.experiences" clickable>
           <q-item-section avatar>
             <q-icon name="work_history" />
           </q-item-section>

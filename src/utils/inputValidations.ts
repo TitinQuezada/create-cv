@@ -1,3 +1,5 @@
+import { convertBytesToMegabytes } from './convertBytesToMegabytes';
+
 const requiredMessage = 'Campo requerido';
 
 export const InputValidations = {
@@ -28,4 +30,9 @@ export const InputValidations = {
 
     return regex.test(value) ? true : 'Direción del sitio web inválida';
   },
+
+  maxSize: (value: File, maxlengthInMegaBytes: number) =>
+    value.size > convertBytesToMegabytes(maxlengthInMegaBytes)
+      ? `Máximo de ${maxlengthInMegaBytes} megabytes`
+      : true,
 };

@@ -8,6 +8,7 @@ export const routePaths = {
   privateRoutes: {
     home: '/home',
     personalInformation: '/personal-information',
+    experiences: '/experiences',
   },
 };
 
@@ -39,6 +40,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: routePaths.privateRoutes.personalInformation,
         component: () => import('pages/PersonalInformationPage.vue'),
+      },
+      {
+        path: routePaths.privateRoutes.experiences,
+        component: () => import('pages/ExperiencesPage.vue'),
       },
     ],
   },

@@ -47,5 +47,27 @@ export const useRepository = <T>(collectionName: Collections) => {
     });
   };
 
-  return { create, getByCurrentUserId, updateByCurrentUserId };
+  const getAllByCurrentUserId = async (): Promise<Array<T>> => {
+    const data: Array<T> = [];
+
+    const q = query(
+      collection(databaseService, collectionName),
+      where('userId', '==', authenticationService.currentUser?.uid)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.docs.forEach(async (doc) => {
+      data.push(doc.data() as T);
+    });
+
+    return data;
+  };
+
+  return {
+    create,
+    getByCurrentUserId,
+    updateByCurrentUserId,
+    getAllByCurrentUserId,
+  };
 };

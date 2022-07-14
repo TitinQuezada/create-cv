@@ -83,7 +83,10 @@ export const usePersonalInformationForm = () => {
       InputValidations.trim,
       (value: string) => InputValidations.maxlength(value, 30),
     ],
-    photo: [InputValidations.required],
+    photo: [
+      InputValidations.required,
+      (value: File) => InputValidations.maxSize(value, 10),
+    ],
     profession: [
       InputValidations.required,
       InputValidations.trim,

@@ -9,9 +9,6 @@ const getErrorMessage = (errorCode: string): string => {
     case 'auth/invalid-email':
       return 'Usuario o contraseña invalido';
 
-    case 'auth/email-already-in-use':
-      return 'El correo eléctronico ya se encuentra en uso.';
-
     case 'auth/weak-password':
       return 'Contraseña insegura';
 
