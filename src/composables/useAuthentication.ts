@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  signInWithRedirect,
 } from 'firebase/auth';
 import { authenticationService } from 'src/boot/firebase';
 import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
