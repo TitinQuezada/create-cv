@@ -1,13 +1,13 @@
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   sendEmailVerification,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signOut,
   updateProfile,
-  signInWithRedirect,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
+
 import { authenticationService } from 'src/boot/firebase';
 import { RegistrationFormValues } from 'src/interfaces/RegistrationFormValues';
 import { useRouter } from 'vue-router';
@@ -66,7 +66,6 @@ export const useAuthentication = () => {
 
   const googleAuthentication = async () => {
     const provider = new GoogleAuthProvider();
-
     await signInWithPopup(authenticationService, provider);
 
     router.push('/home');

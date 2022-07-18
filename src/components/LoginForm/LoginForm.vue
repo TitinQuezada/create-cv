@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import { useQuasar } from 'quasar';
 import GoogleButton from 'src/shared/components/GoogleButton.vue';
 import { useAuthentication } from '../../composables/useAuthentication';
 import { useLoginForm } from './useLoginForm';
 
 const { login } = useAuthentication();
 const { loginForm } = useLoginForm();
+const quasar = useQuasar();
 </script>
 
 <template>
@@ -46,7 +48,10 @@ const { loginForm } = useLoginForm();
             color="primary"
           />
 
-          <google-button extra-class="q-mb-md" />
+          <google-button
+            v-if="!quasar.platform.is.cordova"
+            extra-class="q-mb-md"
+          />
 
           <div class="col-12 text-center">
             <span>¿No tienes cuenta?</span>

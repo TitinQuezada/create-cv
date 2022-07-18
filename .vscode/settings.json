@@ -15,5 +15,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
