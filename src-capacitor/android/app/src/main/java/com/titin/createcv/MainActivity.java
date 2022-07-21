@@ -20,10 +20,8 @@ public class MainActivity extends BridgeActivity {
       add(GoogleAuth.class);
     }});
 
-    if (BuildConfig.DEBUG) {
-      EnableHttpsSelfSigned.enable(this.bridge);
-    }
+              
 
-
+              
   }
 }
