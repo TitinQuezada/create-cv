@@ -5,6 +5,7 @@ import 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
+import { loadGapiInsideDOM } from 'gapi-script';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey?.toString(),
@@ -20,5 +21,9 @@ const app = initializeApp(firebaseConfig);
 const authenticationService = getAuth(app);
 const databaseService = getFirestore(app);
 const storageService = getStorage(app);
+
+export default boot(async () => {
+  await loadGapiInsideDOM();
+});
 
 export { authenticationService, databaseService, storageService };

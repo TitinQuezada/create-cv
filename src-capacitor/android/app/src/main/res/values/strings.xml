@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Create Cv</string>
+    <string name="title_activity_main">Create Cv</string>
+    <string name="package_name">com.titin.createcv</string>
+    <string name="custom_url_scheme">com.titin.createcv</string>
+    <string name="server_client_id">282963792206-vn5m4e6ebtn1pbhrp5e50a8dgv9q5vl3.apps.googleusercontent.com</string>
+</resources>

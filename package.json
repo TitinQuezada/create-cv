@@ -10,13 +10,14 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
-    "android": "quasar dev -m android",
-    "build": "quasar build && quasar build -m android",
+    "android": "quasar dev -m capacitor -T android",
+    "build": "quasar build && quasar build -m capacitor -T android",
     "deploy": "firebase deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "firebase": "^9.8.3",
+    "gapi-script": "^1.2.0",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"

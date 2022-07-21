@@ -22,7 +22,7 @@ interface FormValues {
 }
 
 interface PersonalInformation {
-  userId: string;
+  userId?: string;
   names: string;
   lastnames: string;
   profession: string;
@@ -142,7 +142,7 @@ export const usePersonalInformationForm = () => {
 
   const buildPersonalInformation = (): PersonalInformation => {
     return {
-      userId: authenticationService.currentUser!.uid,
+      userId: authenticationService.currentUser?.uid,
       names: formValues.value.names,
       lastnames: formValues.value.lastnames,
       profession: formValues.value.profession,

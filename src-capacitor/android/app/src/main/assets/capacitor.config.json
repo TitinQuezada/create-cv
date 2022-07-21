@@ -1,0 +1,20 @@
+{
+  "appId": "com.titin.createcv",
+  "appName": "Create Cv",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "GoogleAuth": {
+      "scopes": [
+        "profile",
+        "email"
+      ],
+      "serverClientId": "282963792206-vn5m4e6ebtn1pbhrp5e50a8dgv9q5vl3.apps.googleusercontent.com",
+      "forceCodeForRefreshToken": true
+    }
+  },
+  "server": {
+    "url": "http://192.168.1.107:9500"
+  }
+}

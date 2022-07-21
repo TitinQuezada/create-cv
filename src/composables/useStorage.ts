@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytes, getBlob } from 'firebase/storage';
+import { ref, uploadBytes, getBlob } from 'firebase/storage';
 import { authenticationService, storageService } from 'src/boot/firebase';
 
 export const useStorage = () => {
