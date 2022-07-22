@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "282963792206",
+    "project_id": "create-cv-f4f65",
+    "storage_bucket": "create-cv-f4f65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282963792206:android:8ec5f77fa95e7b92874e1f",
+        "android_client_info": {
+          "package_name": "com.titin.createcv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282963792206-gfk2ikhejp50cvo7and764v8v88sv058.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.titin.createcv",
+            "certificate_hash": "64db27df590bc155fa3d8aba29070bd811aa7d8d"
+          }
+        },
+        {
+          "client_id": "282963792206-vn5m4e6ebtn1pbhrp5e50a8dgv9q5vl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKjmKqrKFsPCYmmZu4qIiWvUTlQHEWRJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282963792206-vn5m4e6ebtn1pbhrp5e50a8dgv9q5vl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
