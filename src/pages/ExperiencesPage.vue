@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import ExperiencesTable from 'src/components/Experiences/ExperiencesTable.vue';
 import ExperienceForm from 'src/components/Experiences/ExperienceForm.vue';
+import ExperiencesCarousel from 'src/components/Experiences/ExperiencesCarousel.vue';
 </script>
 
 <template>
@@ -9,9 +10,10 @@ import ExperienceForm from 'src/components/Experiences/ExperienceForm.vue';
       <span class="text-h4">Experiencias</span>
     </div>
 
-    <experiences-table ref="table" />
+    <experiences-carousel />
+    <!-- <experiences-table ref="table" /> -->
 
-    <experience-form class="q-mt-lg" />
+    <experience-form />
   </q-page>
 </template>
 

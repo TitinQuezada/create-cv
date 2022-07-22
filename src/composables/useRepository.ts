@@ -1,10 +1,12 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   getDocs,
   query,
   updateDoc,
   where,
+  doc,
 } from 'firebase/firestore';
 import { authenticationService, databaseService } from 'src/boot/firebase';
 import { Collections } from '../enums/Collections';
@@ -12,6 +14,10 @@ import { Collections } from '../enums/Collections';
 export const useRepository = <T>(collectionName: Collections) => {
   const create = async (document: T) => {
     await addDoc(collection(databaseService, collectionName), document);
+  };
+
+  const deleteById = async (documentId: string) => {
+    await deleteDoc(doc(databaseService, collectionName, documentId));
   };
 
   const getByCurrentUserId = async (): Promise<T | undefined> => {
@@ -57,7 +63,9 @@ export const useRepository = <T>(collectionName: Collections) => {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.docs.forEach(async (doc) => {
-      data.push(doc.data() as T);
+      data.push({ id: doc.id, ...doc.data() } as T extends { id?: string }
+        ? T
+        : never);
     });
 
     return data;
@@ -68,5 +76,6 @@ export const useRepository = <T>(collectionName: Collections) => {
     getByCurrentUserId,
     updateByCurrentUserId,
     getAllByCurrentUserId,
+    deleteById,
   };
 };

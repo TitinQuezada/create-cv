@@ -1,5 +1,6 @@
 import { authenticationService } from 'src/boot/firebase';
 import { useLoading } from 'src/composables/useLoading';
+import { useModal } from 'src/composables/useModal';
 import { useRepository } from 'src/composables/useRepository';
 import { useToast } from 'src/composables/useToast';
 import { Collections } from 'src/enums/Collections';
@@ -16,11 +17,12 @@ interface ExperienceColumns {
 }
 
 export const useExperiences = () => {
-  const { create, getAllByCurrentUserId } = useRepository<Experience>(
-    Collections.Experiences
-  );
+  const { create, getAllByCurrentUserId, deleteById } =
+    useRepository<Experience>(Collections.Experiences);
   const loading = useLoading();
   const { success } = useToast();
+  const isCarouselAutoPlaying = ref(true);
+  const { showModal } = useModal();
 
   onMounted(async () => await getData());
 
@@ -106,16 +108,42 @@ export const useExperiences = () => {
 
   const submit = async () => {
     loading.show();
-
     await create({
       ...formValues.value,
-      userId: authenticationService.currentUser!.uid,
+      userId: authenticationService.currentUser?.uid,
     });
-
-    success('Guardado con éxito');
-
+    success('Experiencia guardada con éxito');
     loading.hide();
   };
 
-  return { columns, data, formValues, formValidations, submit };
+  const deleteExperience = async (experienceId: string) => {
+    loading.show();
+    await deleteById(experienceId);
+    success('Experiencia eliminada con éxito');
+    loading.hide();
+  };
+
+  const handleDelete = (experienceId: string) => {
+    showModal({
+      title: 'Eliminar Experiencia',
+      message: '¿Estas seguro de eliminar esta experiencia?',
+      onOk: async () => {
+        await deleteExperience(experienceId);
+        await getData();
+      },
+      onCancel: () => {
+        console.log(experienceId);
+      },
+    });
+  };
+
+  return {
+    columns,
+    data,
+    formValues,
+    formValidations,
+    submit,
+    isCarouselAutoPlaying,
+    handleDelete,
+  };
 };
