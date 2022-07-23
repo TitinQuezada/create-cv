@@ -15,8 +15,8 @@ import { useLoading } from './useLoading';
 import { useModal } from './useModal';
 import { useToast } from './useToast';
 
-import 'app/src-capacitor/node_modules/@codetrix-studio/capacitor-google-auth';
-import { Plugins } from 'app/src-capacitor/node_modules/@capacitor/core';
+//import 'app/src-capacitor/node_modules/@codetrix-studio/capacitor-google-auth';
+//import { Plugins } from 'app/src-capacitor/node_modules/@capacitor/core';
 
 export const useAuthentication = () => {
   const router = useRouter();
@@ -70,15 +70,15 @@ export const useAuthentication = () => {
   const googleAuthentication = async () => {
     loading.show();
 
-    const {
-      authentication: { idToken },
-    } = await Plugins.GoogleAuth.signIn();
+    // const {
+    //   authentication: { idToken },
+    // } = await Plugins.GoogleAuth.signIn();
 
-    const googleCredentials = GoogleAuthProvider.credential(idToken);
+    // const googleCredentials = GoogleAuthProvider.credential(idToken);
 
-    await signInWithCredential(authenticationService, googleCredentials);
+    // await signInWithCredential(authenticationService, googleCredentials);
 
-    router.push('/home');
+    // router.push('/home');
 
     loading.hide();
   };
