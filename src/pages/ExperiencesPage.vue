@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import ExperiencesTable from 'src/components/Experiences/ExperiencesTable.vue';
 import ExperienceForm from 'src/components/Experiences/ExperienceForm.vue';
 import ExperiencesCarousel from 'src/components/Experiences/ExperiencesCarousel.vue';
 </script>
@@ -11,8 +10,6 @@ import ExperiencesCarousel from 'src/components/Experiences/ExperiencesCarousel.
     </div>
 
     <experiences-carousel />
-    <!-- <experiences-table ref="table" /> -->
-
     <experience-form />
   </q-page>
 </template>
